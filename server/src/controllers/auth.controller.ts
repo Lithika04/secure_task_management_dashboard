@@ -13,7 +13,7 @@ export const registerUser = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    console.log("body",req.body);
+    
     const { name, email, password } = req.body as RegisterInput;
 
     const existingUser = await User.findOne({ email });
