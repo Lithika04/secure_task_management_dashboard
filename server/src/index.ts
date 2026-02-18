@@ -5,11 +5,15 @@ import cors from "cors";
 import connectDatabase from "./config/database";
 import { log } from "node:console";
 import { env } from "node:process";
+import authRoutes from "./routes/auth.routes";
+ 
 
 dotenv.config();
 const app= express();
-//Middleware section
+//Middleware 
 
+// parse incoming JSON reques bodies
+app.use(express.json());
 //Enalble CORS to allow frontend connection
 app.use(
   cors({
@@ -17,9 +21,10 @@ app.use(
     credentials: true,
   })
 );
+app.use("/api/auth", authRoutes);
 
-// parse incoming JSON reques bodies
-app.use(express.json());
+
+
 //basic health check
 app.get("/health", (_req: Request,res: Response) => {
     res.status(200).json({status: "OK"});
