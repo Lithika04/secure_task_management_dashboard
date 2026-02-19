@@ -82,7 +82,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if (storedToken && !isTokenValid(storedToken)) {
     localStorage.removeItem(TOKEN_KEY);
     
-  }, []); 
+ } }, []); 
 
   // Checks every 60 seconds if token has expired
   // Handles case where user leaves browser open overnight

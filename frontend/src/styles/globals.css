@@ -1,0 +1,31 @@
+/* Tailwind v4 single import */
+@import "tailwindcss";
+
+:root {
+  font-family: "Bahnschrift", "Segoe UI Variable", "Segoe UI", Tahoma, sans-serif;
+  --color-primary-60: #0f172a;   
+  --color-secondary-30: #0284c7; 
+  --color-accent-10: #f59e0b;    
+}
+* {
+  box-sizing: border-box;
+}
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;      
+  background-color: #f8fafc; 
+  color: #0f172a;            
+}
+/* React mounts here — always fill full browser height */
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(2, 132, 199, 0.25);
+}

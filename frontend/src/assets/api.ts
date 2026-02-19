@@ -11,7 +11,19 @@ const api = axios.create({
         "Content-Type": "application/json", //all req send json
     },
 });
-//INTERCEPTOR --> runs after every api res,
+//Request Interceptor --> runs before api req
+//read JWT from localstorage and add to header
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token && config.headers) {
+    // Bearer token format required by our backend auth middleware
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  // Must return config — otherwise request is cancelled
+  return config;
+})
+// Resaponse INTERCEPTOR --> runs after every api res,
 // if backend returns 401 (token expires/invalid) -->clear session & redirect to login automatically
 api.interceptors.response.use(
     (response) => response, //pass reesponse through unchanges
