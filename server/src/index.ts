@@ -6,6 +6,7 @@ import connectDatabase from "./config/database";
 import { log } from "node:console";
 import { env } from "node:process";
 import authRoutes from "./routes/auth.routes";
+import taskRoutes from "./routes/task.routes";
  
 
 dotenv.config();
@@ -22,6 +23,7 @@ app.use(
   })
 );
 app.use("/api/auth", authRoutes);
+app.use("/api/tasks",taskRoutes);
 
 
 
