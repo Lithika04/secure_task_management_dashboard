@@ -17,6 +17,6 @@ router.get("/", protect, getMyTasks) // Fetch tasks belonging to the authenticat
 router.put("/:id", protect, validateRequest(updateTaskSchema), updateTask) // Only task owner can update
 
 // Route to delete a task by ID (protected)
-router.delete("/:id", protect, deleteTask) // Only task owner can delete
+router.delete("/:id", protect,deleteTask) // Only task owner can delete
 
-export default router
+export default router;
