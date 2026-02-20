@@ -1,13 +1,12 @@
-/* Base global styles for typography and default page colors. */
+/* Google Fonts MUST come first */
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
 @import "tailwindcss";
 
 :root {
   font-family: "Space Grotesk", "Segoe UI", Tahoma, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

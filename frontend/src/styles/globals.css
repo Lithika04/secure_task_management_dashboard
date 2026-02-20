@@ -1,29 +1,40 @@
-/* Tailwind v4 single import */
 @import "tailwindcss";
 
 :root {
   font-family: "Bahnschrift", "Segoe UI Variable", "Segoe UI", Tahoma, sans-serif;
-  --color-primary-60: #0f172a;   
-  --color-secondary-30: #0284c7; 
-  --color-accent-10: #f59e0b;    
+  --color-primary-60: #0f172a;
+  --color-secondary-30: #0284c7;
+  --color-accent-10: #f59e0b;
 }
+
 * {
   box-sizing: border-box;
 }
-/* Smooth scrolling for anchor links */
+
 html {
   scroll-behavior: smooth;
+  /* Force full width on html element */
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
-  min-width: 320px;      
-  background-color: #f8fafc; 
-  color: #0f172a;            
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  background-color: #020617;
+  color: #0f172a;
+  overflow-x: hidden;
 }
-/* React mounts here — always fill full browser height */
+
 #root {
   min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 ::selection {
