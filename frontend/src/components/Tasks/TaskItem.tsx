@@ -27,9 +27,9 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
 
   // Background + text color for the status badge
   const statusStyles: Record<TaskStatus, string> = {
-    pending: "bg-amber-50 text-amber-700",
-    "in-progress": "bg-blue-50 text-blue-700",
-    completed: "bg-emerald-50 text-emerald-700",
+    pending: "bg-amber-100 text-amber-800 border-amber-200",
+    "in-progress": "bg-blue-100 text-blue-800 border border-blue-200",
+  completed: "bg-emerald-100 text-emerald-800 border border-emerald-200",
   };
 
   // Human readable labels for each status
@@ -41,9 +41,9 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
 
   // Simple text icons — no icon library needed
   const statusIcon: Record<TaskStatus, string> = {
-    pending: "[P]",
-    "in-progress": "[I]",
-    completed: "[C]",
+    pending: "●",
+    "in-progress": "●",
+    completed: "●",
   };
 
   return (

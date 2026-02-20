@@ -1,4 +1,3 @@
-
 // Main task board — fetches tasks, manages filters,
 //          handles create/edit/delete with modals and stats.
 //
@@ -103,7 +102,7 @@ const TaskList: React.FC = () => {
       // Tell React Query the ["tasks"] cache is now stale
       // This triggers automatic re-fetch → list updates instantly
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
-      setShowForm(false);   // close modal
+      setShowForm(false); // close modal
       setEditingTask(null); // reset to create mode for next open
       toast.success(editingTask ? "Task updated!" : "Task created!");
     },
@@ -146,8 +145,8 @@ const TaskList: React.FC = () => {
 
   // Called by TaskItem Edit button — pre-fills form + opens modal
   const handleEdit = (task: ITask) => {
-    setEditingTask(task);  // pass task to TaskForm for pre-filling
-    setShowForm(true);     // open the modal
+    setEditingTask(task); // pass task to TaskForm for pre-filling
+    setShowForm(true); // open the modal
   };
 
   // Called by Add New Task button — opens modal in create mode
@@ -156,7 +155,7 @@ const TaskList: React.FC = () => {
     setShowForm(true);
   };
 
-  // Client Side Filtering 
+  // Client Side Filtering
   // Filter tasks without extra API call
   // "all" shows everything, others match by status field
   const filteredTasks =
@@ -164,21 +163,16 @@ const TaskList: React.FC = () => {
       ? tasks
       : tasks.filter((task) => task.status === activeFilter);
 
-  // Dashboard Stats 
+  // Dashboard Stats
   // Always computed from FULL tasks array not filtered view
   // So stats show totals regardless of active filter
   const totalTasks = tasks.length;
-  const completedTasks = tasks.filter(
-    (t) => t.status === "completed"
-  ).length;
-  const pendingTasks = tasks.filter(
-    (t) => t.status === "pending"
-  ).length;
+  const completedTasks = tasks.filter((t) => t.status === "completed").length;
+  const pendingTasks = tasks.filter((t) => t.status === "pending").length;
 
   // Render
   return (
     <section className="space-y-5">
-
       {/* TOP CARD — header, filters, stats */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
@@ -188,9 +182,7 @@ const TaskList: React.FC = () => {
         {/* Title + Add New Task button */}
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="text-xl font-semibold text-slate-900">
-              Task Board
-            </h2>
+            <h2 className="text-xl font-semibold text-slate-900">Task Board</h2>
             <p className="text-sm text-slate-500">
               Create, edit, and track your work in one place.
             </p>
@@ -212,7 +204,7 @@ const TaskList: React.FC = () => {
               onClick={() => setActiveFilter(filter.value)}
               className={`rounded-full px-3 py-1 text-xs font-medium transition ${
                 activeFilter === filter.value
-                  ? "bg-blue-700 text-white"      // active filter style
+                  ? "bg-blue-700 text-white" // active filter style
                   : "bg-slate-100 text-slate-700 hover:bg-slate-200"
               }`}
             >
@@ -277,8 +269,8 @@ const TaskList: React.FC = () => {
         onClose={() => setDeletingTaskId(null)}
       >
         <p className="text-sm text-slate-600">
-          Are you sure you want to delete this task? This action cannot
-          be undone.
+          Are you sure you want to delete this task? This action cannot be
+          undone.
         </p>
         <div className="mt-5 flex gap-2">
           <button
@@ -299,8 +291,9 @@ const TaskList: React.FC = () => {
       {/* TASK LIST — conditional rendering based on fetch state */}
       {isLoading ? (
         // Loading state while useQuery fetches
-        <div className="rounded-xl border border-sky-100 bg-white p-6 text-slate-600 shadow-sm">
-          Loading tasks...
+        <div className="rounded-xl border border-sky-100 bg-white p-10 text-center shadow-sm">
+          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-sky-200 border-t-sky-600" />
+          <p className="mt-3 text-sm text-slate-500">Loading tasks...</p>
         </div>
       ) : isError ? (
         // Error state if API call failed
@@ -312,7 +305,7 @@ const TaskList: React.FC = () => {
         <div className="rounded-xl border border-sky-100 bg-white p-8 text-center shadow-sm">
           <p className="text-slate-700">No tasks found for this filter.</p>
           <p className="mt-1 text-sm text-slate-500">
-            Use Add New Task to create your first task.
+            Click "Add New Task" to create your first task.
           </p>
         </div>
       ) : (
@@ -320,9 +313,9 @@ const TaskList: React.FC = () => {
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {filteredTasks.map((task) => (
             <TaskItem
-              key={task._id}          // unique key for React list rendering
-              task={task}             // full task data for display
-              onEdit={handleEdit}     // opens edit modal with this task
+              key={task._id} // unique key for React list rendering
+              task={task} // full task data for display
+              onEdit={handleEdit} // opens edit modal with this task
               onDelete={handleDelete} // opens delete confirm with this ID
             />
           ))}

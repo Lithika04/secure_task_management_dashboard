@@ -3,8 +3,7 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDatabase from "./config/database";
-import { log } from "node:console";
-import { env } from "node:process";
+import { env } from "./config/env";
 import authRoutes from "./routes/auth.routes";
 import taskRoutes from "./routes/task.routes";
  
