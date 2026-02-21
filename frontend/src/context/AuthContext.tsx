@@ -6,6 +6,7 @@ interface AuthContextType {
   logout: () => void;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext<AuthContextType>({
   token: null,
   login: () => {},
@@ -59,15 +60,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setToken(null);
   };
 
-  useEffect(() => {
-    const stored = readStoredToken();
-    if (stored !== token) setToken(stored);
-  }, []);
+  // ✅ FIXED — removed the first useEffect entirely
+  // readStoredToken() is already called in useState initializer above
+  // No need to call it again in useEffect — that caused the setState warning
 
+  // ✅ Auto logout when token expires
   useEffect(() => {
     if (!token) return;
     const interval = setInterval(() => {
-      if (!isTokenValid(token)) logout();
+      if (!isTokenValid(token)) {
+        // logout is called inside setInterval callback — not directly in effect body
+        logout();
+      }
     }, 60_000);
     return () => clearInterval(interval);
   }, [token]);
