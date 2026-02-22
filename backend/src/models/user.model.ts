@@ -1,11 +1,8 @@
 import mongoose, { Document,Schema} from "mongoose";
 import bcrypt from "bcrypt";
  
-/**
- * Iuser Interface
- * Defines the structure of a user document
- * extend the mongoose doc for built-in properties
- */
+ // Iuser Interface- Defines the structure of a user document
+
 export interface IUser extends Document {
   name: string;
   email: string;
@@ -52,7 +49,6 @@ UserSchema.pre<IUser>("save", async function () {
 });
 /**
  * comparePassword Method
- * ----------------------
  * Used during login to compare entered password
  * with hashed password stored in DB.
  */

@@ -1,12 +1,10 @@
 
 //  A route guard that blocks unauthenticated users
-//          from accessing protected pages (like the dashboard)
+//          from accessing protected pages
 //   When React Router tries to render /dashboard:
 //     1. ProtectedRoute reads token from AuthContext
-//     2. If token is null → redirects to /login (user can't enter)
-//     3. If token exists → renders the children (dashboard loads)
-
-// src/components/Layout/ProtectedRoute.tsx
+//     2. If token is null -> redirects to /login (user can't enter)
+//     3. If token exists -> renders the children (dashboard loads)
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";

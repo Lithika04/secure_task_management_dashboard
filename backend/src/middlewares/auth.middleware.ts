@@ -5,11 +5,9 @@ import { env } from "../config/env";
 export interface AuthRequest extends Request {
   userId?: string;
 }
+ //Protect middleware
+ //Verifies JWT before allowing access
 
-/**
- * Protect middleware
- * Verifies JWT before allowing access
- */
 export const protect = (
   req: AuthRequest,
   res: Response,

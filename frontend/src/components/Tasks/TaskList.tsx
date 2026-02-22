@@ -1,11 +1,8 @@
-// Main task board — fetches tasks, manages filters,
-//          handles create/edit/delete with modals and stats.
-//
+// Main task board — fetches tasks, manages filters,handles create/edit/delete with modals and stats.
 // DATA FLOW:
-//   useQuery   → fetches tasks from backend → stores in cache
-//   useMutation → sends create/edit/delete to backend
-//   invalidateQueries → refreshes cache after every mutation
-// ============================================================
+//   useQuery   -> fetches tasks from backend → stores in cache
+//   useMutation -> sends create/edit/delete to backend
+//   invalidateQueries -> refreshes cache after every mutation
 
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -68,10 +65,10 @@ const TaskList: React.FC = () => {
 
   //  Fetch Tasks
   // useQuery automatically:
-  //   → fetches on component mount
-  //   → caches result with key ["tasks"]
-  //   → re-fetches when window regains focus
-  //   → provides isLoading and isError states automatically
+  //   -> fetches on component mount
+  //   -> caches result with key ["tasks"]
+  //   -> re-fetches when window regains focus
+  //   -> provides isLoading and isError states automatically
   const {
     data: tasks = [],
     isLoading,

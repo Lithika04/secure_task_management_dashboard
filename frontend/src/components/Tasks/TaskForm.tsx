@@ -1,7 +1,7 @@
 //single form that handle both create and edit
 //FLOW:
 //   User fills form → clicks submit → onSubmit(taskData)
-//   → TaskList receives data → calls API (POST or PUT)
+//   -> TaskList receives data → calls API (POST or PUT)
 
 
 import React, { useState, useEffect } from "react";
@@ -60,12 +60,20 @@ const TaskForm: React.FC<TaskFormProps> = ({
   // If user clicks Edit on a DIFFERENT task while form is open,
   // this re-syncs all fields to the new task's data.
   // Without this, old task data would remain in the form.
-  useEffect(() => {
-    setTitle(task?.title || "");
-    setDescription(task?.description || "");
-    setStatus(task?.status || "pending");
-    setDueDate(task?.dueDate ? task.dueDate.slice(0, 10) : "");
-  }, [task]); // runs every time task prop changes
+ useEffect(() => {
+  if (task) {
+    setTitle(task.title);
+    setDescription(task.description || "");
+    setStatus(task.status);
+    setDueDate(task.dueDate || "");
+  } else {
+    setTitle("");
+    setDescription("");
+    setStatus("pending");
+    setDueDate("");
+  }
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [task?._id]);// runs every time task prop changes
 
   return (
     // Fade in when form appears inside Modal
@@ -78,7 +86,6 @@ const TaskForm: React.FC<TaskFormProps> = ({
 
       <form onSubmit={handleSubmit} className="space-y-4">
 
-        {/* TITLE — required field */}
         <div>
           <label className="mb-1 block text-sm font-medium text-slate-700">
             Title
@@ -104,7 +111,6 @@ const TaskForm: React.FC<TaskFormProps> = ({
           />
         </div>
 
-        {/* DUE DATE — optional date picker */}
         <div>
           <label className="mb-1 block text-sm font-medium text-slate-700">
             Due Date
@@ -116,8 +122,6 @@ const TaskForm: React.FC<TaskFormProps> = ({
             className="w-full rounded-md border border-slate-300 px-3 py-2 outline-none ring-0 transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
           />
         </div>
-
-        {/* STATUS — dropdown select */}
         <div>
           <label className="mb-1 block text-sm font-medium text-slate-700">
             Status
@@ -135,8 +139,6 @@ const TaskForm: React.FC<TaskFormProps> = ({
             ))}
           </select>
         </div>
-
-        {/* ACTION BUTTONS */}
         <div className="flex gap-2 pt-2">
           {/* Submit — disabled while API call runs */}
           <button

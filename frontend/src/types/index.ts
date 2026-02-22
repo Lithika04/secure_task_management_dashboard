@@ -1,4 +1,4 @@
-// ── TaskStatus ────────────────────────────────────────────────
+// ── TaskStatus
 // Union type: a variable of TaskStatus can ONLY be one of these
 // three string values. TypeScript will error if you try to assign
 // any other string like "done" or "active".
@@ -6,7 +6,7 @@
 // Used in: ITask, TaskPayload, TaskForm, TaskItem, TaskList
 export type TaskStatus = "pending" | "in-progress" | "completed";
 
-// ── ITask ─────────────────────────────────────────────────────
+// ── ITask 
 // Represents a task object as returned FROM the backend API.
 // The "I" prefix is a TypeScript convention for interfaces.
 //
@@ -22,7 +22,7 @@ export interface ITask {
   updatedAt?: string;    // set by MongoDB automatically on every update
 }
 
-// ── TaskPayload ───────────────────────────────────────────────
+// ── TaskPayload
 // Represents data we SEND to the backend when creating or
 // editing a task. It does NOT include _id, createdAt, updatedAt
 // because those are assigned by the backend, not the user.

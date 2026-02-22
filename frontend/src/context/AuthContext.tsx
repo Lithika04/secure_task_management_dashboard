@@ -59,12 +59,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem(TOKEN_KEY);
     setToken(null);
   };
-
-  // ✅ FIXED — removed the first useEffect entirely
-  // readStoredToken() is already called in useState initializer above
-  // No need to call it again in useEffect — that caused the setState warning
-
-  // ✅ Auto logout when token expires
+  // Auto logout when token expires
   useEffect(() => {
     if (!token) return;
     const interval = setInterval(() => {

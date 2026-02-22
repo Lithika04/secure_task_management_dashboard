@@ -4,10 +4,7 @@ import jwt from "jsonwebtoken";
 import { AuthRequest } from "../middlewares/auth.middleware";
 import { LoginInput, RegisterInput } from "../validators/auth.schemas";
 import { env } from "../config/env";
-
-// ==========================
 // Register a New User
-// ==========================
 export const registerUser = async (
   req: Request,
   res: Response,
@@ -15,29 +12,24 @@ export const registerUser = async (
 ): Promise<void> => {
   try {
     const { name, email, password } = req.body as RegisterInput;
-
-    // --------------------------
+ 
     // Basic validation: ensure all required fields are provided
-    // --------------------------
+  
     if (!name || !email || !password) {
       res.status(400).json({ message: "Name, Email, and Password are required" });
       return;
     }
-
-    // --------------------------
     // Check if the user already exists in the database
-    // --------------------------
+  
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       res.status(400).json({ message: "User already exists" });
       return;
     }
-
-    // --------------------------
     // Create a new user instance
-    // Note: password hashing should be handled in the User model pre-save hook
-    // --------------------------
+    //  password hashing should be handled in the User model pre-save hook
+
     const user = new User({
       name,
       email,
@@ -46,10 +38,8 @@ export const registerUser = async (
 
     // Save the user to the database
     await user.save();
-
-    // --------------------------
     // Respond with success message
-    // --------------------------
+  
     res.status(201).json({
       message: "User registered successfully",
     });
@@ -62,10 +52,7 @@ export const registerUser = async (
     next(error);
   }
 };
-
-// ==========================
 // Login User
-// ==========================
 export const loginUser = async (
   req: Request,
   res: Response,
@@ -74,49 +61,38 @@ export const loginUser = async (
   try {
     const { email, password } = req.body as LoginInput;
 
-    // --------------------------
     // Basic validation: email and password must be provided
-    // --------------------------
+  
     if (!email || !password) {
       res.status(400).json({ message: "Email and Password are required" });
       return;
     }
-
-    // --------------------------
     // Find the user by email
-    // --------------------------
+  
     const user = await User.findOne({ email });
 
     if (!user) {
       res.status(400).json({ message: "Invalid credentials" });
       return;
     }
-
-    // --------------------------
     // Compare provided password with hashed password in DB
-    // Note: comparePassword should be a method in the User model
-    // --------------------------
+    // comparePassword should be a method in the User model
     const isMatch = await user.comparePassword(password);
 
     if (!isMatch) {
       res.status(400).json({ message: "Invalid credentials" });
       return;
     }
-
-    // --------------------------
     // Generate JWT token for authentication
     // Expires in 1 day
-    // --------------------------
     const token = jwt.sign(
       { userId: user._id },
       env.JWT_SECRET,
       { expiresIn: "1d" }
     );
 
-    // --------------------------
     // Send token back to client
     // Client will use this token for authenticated requests
-    // --------------------------
     res.status(200).json({
       message: "Login successful",
       token,
@@ -130,9 +106,7 @@ export const loginUser = async (
   }
 };
 
-// ==========================
 // Get authenticated user profile
-// ==========================
 export const getMe = async (
   req: AuthRequest,
   res: Response,

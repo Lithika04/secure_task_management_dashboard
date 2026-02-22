@@ -73,23 +73,17 @@ This planning phase ensured structured component design and smoother frontend de
 ---
 ## Third-Party Packages
 
-### @tanstack/react-query
-Used for efficient server state management including data fetching, caching, background refetching, and automatic cache invalidation after mutations.
+- **React Query** — handles all data fetching, caching, and refreshing automatically so we don't have to manually manage loading and error states everywhere.
 
-### framer-motion
-Handles UI animations such as page transitions, modal animations, and task card effects to provide a smooth user experience.
+- **Framer Motion** — adds smooth animations for page transitions and modals, giving the app a polished and professional feel.
 
-### date-fns
-Formats timestamps into readable date and relative time formats. Lightweight and tree-shakeable.
+- **date-fns** — formats dates in a readable way like "15 Jan 2026, 02:30 PM" and shows relative time like "3 hours ago".
 
-### react-toastify
-Displays non-blocking success and error notifications for better user feedback.
+- **React Toastify** — shows small pop-up notifications for success and error feedback without interrupting the user's flow.
 
-### Zod
-Validates backend request bodies to ensure type-safe and sanitized data before reaching controllers.
+- **Zod** — validates all incoming API request data on the backend before it reaches the controller, ensuring clean and safe inputs.
 
-### Axios
-Used for API requests with support for request/response interceptors. Automatically attaches JWT tokens and handles global 401 responses.
+- **Axios** — used instead of fetch because it supports interceptors. We use these to automatically attach the JWT token to every request and handle expired sessions globally.
 ---
 
 ## Folder Structure

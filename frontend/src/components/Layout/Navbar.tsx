@@ -23,8 +23,6 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    // sticky top-0: sticks to top of viewport while scrolling
-    // z-50: stays above all other elements (modals use z-50 too, but navbar is always visible)
     <motion.nav
       initial={{ opacity: 0, y: -12 }} // starts invisible and 12px above position
       animate={{ opacity: 1, y: 0 }} // slides down and fades in on mount
@@ -37,8 +35,6 @@ const Navbar: React.FC = () => {
         >
           TaskVault
         </Link>
-
-        {/* NAV LINKS — change based on whether user is logged in */}
         <div className="flex gap-4 items-center text-sm sm:text-base">
           {token ? (
             // AUTHENTICATED USER links

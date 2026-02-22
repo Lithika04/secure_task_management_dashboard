@@ -1,11 +1,5 @@
 
-//  Displays one task as a card with status badge,
-//          timestamps, and edit/delete action buttons.
-//
-// THIS IS A PRESENTATIONAL COMPONENT:
-//   → receives data and callbacks as props
-//   → does NOT fetch data or call APIs
-//   → all actions passed UP to TaskList via callbacks
+//  Displays one task as a card with status badge,timestamps, and edit/delete action buttons.
 
 
 import React from "react";
@@ -80,7 +74,6 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
         )}
 
         {/* CREATED AT — formatted with date-fns */}
-        {/* Output: "15 Jan 2025, 02:30 PM" */}
         <p className="text-xs text-slate-400">
           Created {format(new Date(task.createdAt), "dd MMM yyyy, hh:mm a")}
         </p>

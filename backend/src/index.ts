@@ -48,14 +48,11 @@ app.get("/api/protected", protect, (req, res) => {
 // Standard handlers for unknown routes and unexpected runtime errors.
 app.use(notFound)
 app.use(errorHandler)
-// ==========================
 // Server Startup Function
-// ==========================
 
-/**
- * start server only AFTER database connects.
- * This prevents app from running without DB.
- */
+// start server only AFTER database connects.
+//This prevents app from running without DB.
+
 const startServer = async (): Promise<void> => {
   try {
     console.log("Connecting to MongoDB...");
