@@ -33,9 +33,9 @@ The objective was to design and implement a secure, type-safe task management da
 
 . Users can manage (create, read, update, delete) their own tasks
 
-. he entire stack is strictly typed using TypeScript
+. The entire stack is strictly typed using TypeScript
 
-. he UI is responsive, modern, and production-ready
+. The UI is responsive, modern, and production-ready
 
 ---
 
